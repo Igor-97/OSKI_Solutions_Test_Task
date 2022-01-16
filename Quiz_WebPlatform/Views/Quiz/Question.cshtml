@@ -1,0 +1,43 @@
+﻿@model Quiz_WebPlatform.ViewModels.QuizQuestionViewModel
+
+@{ 
+    ViewBag.Title = "Quiz Question";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron">
+            <h2>Questionnaire</h2>
+            <hr class="my-4">
+            @using (Html.BeginForm("Question", "Quiz", FormMethod.Post))
+            {
+                <div class="form-group">
+                    @Html.HiddenFor(m => m.CategoryId, new { Value = Model.CategoryId.ToString() })
+                    @Html.HiddenFor(m => m.QuestionId, new { Value = Model.QuestionId.ToString() })
+                    <p>
+                        <strong>@Model.QuestionText</strong>
+                    </p>
+                </div>
+                <div class="form-group">
+                    @Html.ValidationSummary(true, null, new { @class = "alert alert-danger" })
+                    @foreach (var item in Model.OptionsList)
+                    {
+                        <div class="form-check">
+                            @Html.RadioButton("OptionText", item.OptionText, new { @class = "form-check-input", @id = item.OptionId })
+                            <label class="form-check-label" for="@item.OptionId">@item.OptionText</label>
+                        </div>
+                    }
+                </div>
+                if (Model.IsLast == true)
+                {
+                    @Html.HiddenFor(m => m.IsLast, new { Value = Model.IsLast.ToString() })
+                    <input type="submit" name="Finish" value="Finish" class="btn btn-success" />
+                }
+                else
+                {
+                    <input type="submit" name="Next" value="Next" class="btn btn-success" />
+                }
+            }
+        </div>
+    </div>
+</div>

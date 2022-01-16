@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<div class="jumbotron">
+    <h1>Quiz Web Platofrm</h1>
+    <p class="lead">Quiz Web Platform is a free source that gives an ability to set up group based quizzes to examine user  skills in certain fields or subjects.</p>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p><a href="/Quiz" class="btn btn-primary btn-lg">Quiz &raquo;</a></p>
+    }
+    else
+    {
+        <p><a href="/Account" class="btn btn-primary btn-lg">Log In &raquo;</a></p>
+    }
+</div>

@@ -1,0 +1,29 @@
+﻿@model Quiz_WebPlatform.ViewModels.QuizCategoriesViewModel
+
+@{
+    ViewBag.Title = "Quiz";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron">
+            <h2>Quiz</h2>
+            <hr class="my-4">
+            <h3>Group: @Model.QuizName</h3>
+            <p>
+                Here is the list of available categories to pick up for a quiz.
+                This list is based on your current quiz group.
+                Please, select your preferred category to continue.
+            </p>
+            <hr class="my-4">
+            @using (Html.BeginForm("Index", "Quiz", FormMethod.Post))
+            {
+                <div class="form-group">
+                    @Html.LabelFor(m => m.CategoryId, "Categories:")
+                    @Html.DropDownListFor(model => model.CategoryId, Model.CategoriesList, new { @class = "form-control" })
+                </div>
+                <input type="submit" value="Start" name="Start" class="btn btn-primary" />
+            }
+        </div>
+    </div>
+</div>

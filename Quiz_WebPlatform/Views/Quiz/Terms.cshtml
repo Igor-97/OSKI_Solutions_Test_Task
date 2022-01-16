@@ -1,0 +1,33 @@
+﻿@model Quiz_WebPlatform.ViewModels.QuizCategoryDescriptionViewModel
+
+@{
+    ViewBag.Title = "Quiz Terms & Description";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron">
+            <h2>Quiz Terms & Description</h2>
+            <hr class="my-4">
+            <p>
+                @Model.CategoryDescription
+            </p>
+            <hr class="my-4">
+            <p>
+                Please, read description of picked quiz. Accept terms to continue by checking a box under this message.
+            </p>
+            <hr class="my-4">
+            @using (Html.BeginForm("Terms", "Quiz", FormMethod.Post))
+            {
+                @Html.HiddenFor(m => m.CategoryId)
+                @Html.HiddenFor(m => m.CategoryDescription)
+                <div class="form-group">
+                    @Html.ValidationSummary(true, null, new { @class = "alert alert-danger" })
+                    @Html.CheckBoxFor(m => m.Checkbox, new { @class = "form-check-input" })
+                    @Html.LabelFor(m => m.Checkbox, "I agree to start", new { @class = "form-check-label" })
+                </div>
+                <input type="submit" value="Proceed" name="Proceed" class="btn btn-success" />
+            }
+        </div>
+    </div>
+</div>

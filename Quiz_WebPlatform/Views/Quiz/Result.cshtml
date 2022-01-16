@@ -1,0 +1,49 @@
+﻿@model Quiz_WebPlatform.ViewModels.QuizResultModelView
+
+@{
+    ViewBag.Title = "Quiz Result";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron">
+            <h2>Quiz Result</h2>
+            <hr class="my-4">
+            <p>
+                <strong>Congratulations on completing the quiz!</strong>
+            </p>
+            <hr class="my-4">
+            <div class="form-group">
+                @Html.ValidationSummary(true, null, new { @class = "alert alert-danger" })
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <strong>Quiz score: </strong> @Model.Score points
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Total questions: </strong> @Model.TotalQuestions
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Correct answers: </strong> @Model.RightAnswers
+                    </li>
+                </ul>
+            </div>
+            @if (Model.PreviousResult != null)
+            {
+                <hr class="my-4">
+                <h3>Previous result:</h3>
+                <div class="form-group">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>Score: </strong> @Model.PreviousResult.Score points
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Date: </strong> @Model.PreviousResult.Date.ToString("yyyy-MM-dd HH':'mm':'ss")
+                        </li>
+                    </ul>
+                </div>
+            }
+            <hr class="my-4">
+            <p><a href="/Quiz" class="btn btn-primary btn-lg">Back &raquo;</a></p>
+        </div>
+    </div>
+</div>
